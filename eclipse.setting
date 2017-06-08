@@ -1,0 +1,3 @@
+adjust heap size
+Run Configuration -> Arguments, in VM arguments section just mention the heap size you want to extend as below:
+-Xmx1024m
