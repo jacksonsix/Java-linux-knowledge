@@ -1,0 +1,9 @@
+shell:
+
+be sure to use bash as shell. If want to use history,... etc.
+
+
+
+list process:   ps aux 
+
+
