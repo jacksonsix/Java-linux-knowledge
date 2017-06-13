@@ -1,0 +1,58 @@
+How can I check and detect a JVM corrupted? How can I check that Security Manager, 
+Byte Code Verifier and Class Loader are working correctly?
+You would do this the same way you would do for any other process.
+Typically, you would use a HIDS (Host Intrusion Detection System) that would detect
+if any changes are made to files. In your case, you would need a HIDS system that is
+capable of detecting changes to the filesystem, especially for the artifacts that 
+constitute the runtime - the java executable and related shared libraries,
+and the runtime classes of the JRE. As long as the HIDS has been configured to detect changes to these files,
+you would not need any extraneous mechanisms for protecting them.
+
+I've mostly encountered the use of Samhain and Tripwire for this purpose. 
+There could be other HIDS systems that are also capable of this task.
+
+
+
+
+
+java.lang.OutOfMemoryError: PermGen space
+It's a typical Hibernate/JPA + IceFaces/JSF application running on Tomcat 6 and JDK 1.6.
+Apparently this can occur after redeploying an application a few times.
+What causes it and what can be done to avoid it? How do I fix the problem?
+
+1.
+The solution was to add these flags to JVM command line when Tomcat is started:
+
+-XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled
+You can do that by shutting down the tomcat service, then going into the Tomcat/bin directory and running tomcat6w.exe. 
+Under the "Java" tab, add the arguments to the "Java Options" box. Click "OK" and then restart the service.
+
+If you get an error the specified service does not exist as an installed service you should run:
+
+tomcat6w //ES//servicename
+where servicename is the name of the server as viewed in services.msc
+
+2.
+You better try -XX:MaxPermSize=128M rather than -XX:MaxPermGen=128M.
+
+I can not tell the precise use of this memory pool, but it have to do with the number of classes loaded into the JVM. 
+(Thus enabling class unloading for tomcat can resolve the problem.) If your applications generates and compiles classes on 
+the run it is more likely to need a memory pool bigger than the default.
+
+
+3.
+App server PermGen errors that happen after multiple deployments are most likely caused by references held by the container 
+into your old apps' classloaders. For example, using a custom log level class will cause references to be held by
+the app server's classloader. You can detect these inter-classloader leaks by using modern (JDK6+) JVM analysis tools 
+such as jmap and jhat to look at which classes continue to be held in your app, and redesigning or eliminating their use.
+Usual suspects are databases, loggers, and other base-framework-level libraries.
+
+
+4.
+Common mistakes people make is thinking that heap space and permgen space are same, which is not at all true. You could have lot of space remaining in the heap but still can run out of memory in permgen.
+
+Common causes of OutofMemory in PermGen is ClassLoader. Whenever a class is loaded into JVM, all its meta data, along with Classloader, is kept on PermGen area and they will be garbage collected when the Classloader which loaded them is ready for garbage collection. In Case Classloader has a memory leak than all classes loaded by it will remain in memory and cause permGen outofmemory once you repeat it a couple of times. The classical example is Java.lang.OutOfMemoryError:PermGen Space in Tomcat.
+
+Now there are two ways to solve this:
+1. Find the cause of Memory Leak or if there is any memory leak.
+2. Increase size of PermGen Space by using JVM param -XX:MaxPermSize and -XX:PermSize.
