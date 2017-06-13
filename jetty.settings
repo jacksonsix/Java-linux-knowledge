@@ -1,0 +1,13 @@
+Jetty provides logging via its own org.eclipse.jetty.util.log.Logger layer
+
+Configure the Jetty logging layer via the org.eclipse.jetty.util.log.Log class
+
+Load Properties
+
+First from a Classpath Resource called jetty-logging.properties (if found).
+Then from the System.getProperties().
+Determine the log implementation.
+
+If property org.eclipse.jetty.util.log.class is defined, load the class it defines as the logger implementation from the server classpath.
+If the class org.slf4j.Logger exists in server classpath, the Jetty implementation becomes org.eclipse.jetty.util.log.Slf4jLog.
+If no logger implementation is specified, default to org.eclipse.jetty.util.log.StdErrLog.
