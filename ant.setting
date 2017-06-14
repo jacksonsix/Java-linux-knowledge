@@ -1,0 +1,13 @@
+1 main setting file.  build.xml
+2. local system, use  build.properties
+
+3 . ant is included in eclispse.   Windows->
+
+4. JAVA_HOME for Ant 
+In Eclipse the Ant java.home variable is not based on the Windows JAVA_HOME environment variable. Instead it is set to the home directory of the project's JRE.
+
+To change the default JRE (e.g. change it to a JDK) you can go to Windows->Preferences... and choose Java->Installed JREs.
+
+To change just a single project's JRE you can go to Project->Properties and choose Java Build Path and choose the Libraries tab. Find the JRE System Library and click it, then choose Edit and choose the JRE (or JDK) that you want.
+
+If that doesn't work then when running the build file you can choose Run as->Ant Build... and click the JRE tab, choose separate JRE and specify the JRE you want there.
