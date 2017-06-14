@@ -1,0 +1,9 @@
+browse http://localhost:8080    I get:  HTTP Status 404 
+
+Click on Window > Show view > Server or right click on the server in "Servers" view, select "Properties".
+In the "General" panel, click on the "Switch Location" button.
+The "Location: [workspace metadata]" should replace by something else.
+Open the Overview screen for the server by double clicking it.
+In the Server locations tab , select "Use Tomcat location".
+Save the configurations and restart the Server.
+You may want to follow the steps above before starting the server. Because server location section goes grayed-unreachable.
