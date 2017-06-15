@@ -1,3 +1,9 @@
+****
+A good explanation of JVM heap, pergen space
+https://plumbr.eu/outofmemoryerror/permgen-space
+
+______
+
 How can I check and detect a JVM corrupted? How can I check that Security Manager, 
 Byte Code Verifier and Class Loader are working correctly?
 You would do this the same way you would do for any other process.
