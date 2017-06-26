@@ -1,1 +1,12 @@
 https://docs.spring.io/docs/Spring-MVC-step-by-step/part1.html
+
+
+
+
+System.getProperty() gets a property as defined by the JVM (either the JVM itself or any -D options you may have passed at the command line).
+The list of defined properties can be found here (thanks @NikitaBeloglazov).
+
+properties.getProperty() is the result of someone having initialized an object of type Properties.
+They are not the same, though you can get what System has as a Properties instance.
+
+A Properties object is very often the result of loading a Java property file (see here for how this is done)
