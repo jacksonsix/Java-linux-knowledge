@@ -1,3 +1,5 @@
+http://www.oracle.com/technetwork/java/filters-137243.html
+
 Servlet filters are implementation of the chain of responsibility pattern
 
 The point is that each filter stays "in front" and "behind" each servlet it is mapped to. 
