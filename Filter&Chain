@@ -1,0 +1,17 @@
+Servlet filters are implementation of the chain of responsibility pattern
+
+The point is that each filter stays "in front" and "behind" each servlet it is mapped to. 
+So if you have a filter around a servlet, you'll have:
+
+void doFilter(..) { 
+    // do stuff before servlet gets called
+
+    // invoke the servlet, or any other filters mapped to the target servlet
+    chain.doFilter(..);
+
+    // do stuff after the servlet finishes
+}
+You also have the option not to call chain.doFilter(..) in which case the servlet will never be called. 
+This is useful for security purposes - for example you can check whether there's a user logged-in.
+
+
