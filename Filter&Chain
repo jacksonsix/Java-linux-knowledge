@@ -17,3 +17,10 @@ You also have the option not to call chain.doFilter(..) in which case the servle
 This is useful for security purposes - for example you can check whether there's a user logged-in.
 
 
+----------------------------------------------------
+Servlet Filter is used for monitoring request and response from client to the servlet, or to modify the request and response, 
+or to audit and log.
+
+Servlet Listener is used for listening to events in a web containers, such as when you create a session,
+or place an attribute in an session or if you passivate and activate in another container,
+to subscribe to these events you can configure listener in web.xml, for example HttpSessionListener.
