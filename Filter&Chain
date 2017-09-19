@@ -24,3 +24,12 @@ or to audit and log.
 Servlet Listener is used for listening to events in a web containers, such as when you create a session,
 or place an attribute in an session or if you passivate and activate in another container,
 to subscribe to these events you can configure listener in web.xml, for example HttpSessionListener.
+
+
+Where as the listeners are like triggers that can be attached to events in your app server (let's use the term container here).
+With listeners you can track application-level, session-level, life-cycle changes, attribute changes etc.
+The implemented interfaces are javax.servlet.Listener interface.
+
+
+
+https://i.stack.imgur.com/PAUyk.png
