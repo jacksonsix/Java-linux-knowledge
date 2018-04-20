@@ -1,0 +1,31 @@
+import java.lang.reflect.Field;
+
+/*
+You have to use reflection:
+
+Use Class.getField() to get a Field reference. If it's not public you'll need to call Class.getDeclaredField() instead
+Use AccessibleObject.setAccessible to gain access to the field if it's not public
+Use Field.set() to set the value, or one of the similarly-named methods if it's a primitive
+Here's an example which deals with the simple case of a public field. A nicer alternative would be to use properties, if possible.
+*/
+class DataObject
+{
+    // I don't like public fields; this is *solely*
+    // to make it easier to demonstrate
+    public String foo;
+}
+
+public class FieldCheck
+{
+    public static void main(String[] args)
+        // Declaring that a method throws Exception is
+        // likewise usually a bad idea; consider the
+        // various failure cases carefully
+        throws Exception
+    {
+        Field field = DataObject.class.getField("foo");
+        DataObject o = new DataObject();
+        field.set(o, "new value");
+        System.out.println(o.foo);
+    }
+}
