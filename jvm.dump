@@ -1,0 +1,4 @@
+config the server:   -XX: HeapDumpOnOutOfMemoryError
+this create .hprof  dump
+Use tool:   Eclipse Memory Analyzer
+
