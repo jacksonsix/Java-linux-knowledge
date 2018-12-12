@@ -37,8 +37,12 @@ Just like exclude files, it's possible to exclude/include directories through --
 grep --exclude-dir={dir1,dir2,*.dst} -rnw '/path/to/somewhere/' -e "pattern"
 This works very well for me, to achieve almost the same purpose like yours.
 
-For more options check man grep.
+-------------------------------------------------------------------
 
 on Windows, find string in files
 findstr /s "word"  *.java
+
+
+on Windows scp command , can be found in git bash
+scp -r -P22  user@servername:/home/user/a.log  Downloads
 
