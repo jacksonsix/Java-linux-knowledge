@@ -2,3 +2,16 @@ config the server:   -XX: HeapDumpOnOutOfMemoryError
 this create .hprof  dump
 Use tool:   Eclipse Memory Analyzer
 
+dominator tree models the keep alive dependencies among the objects in the heap
+3 Questions:
+1. Who hold the objects cannot be released?    shortest path of   GC root->accumulation point
+2. What is the content of those objects? Why it is so big?
+3. The environment?   System overview
+
+
+https://memoryanalyzer.blogspot.com/
+https://memoryanalyzer.blogspot.com/2008/05/automated-heap-dump-analysis-finding.html
+
+When the heap dump is opened for the first time, we create several index files next to it,
+which enable us to access the data efficiently afterwards. During the first parsing we also build a dominator tree out of the object graph.
+And namely this dominator tree plays the most important role later, when we do the analysis and search for the suspects
