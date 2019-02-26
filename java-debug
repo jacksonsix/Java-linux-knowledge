@@ -1,0 +1,14 @@
+ you start your server with the debug port open, by adding this into your java command:
+
+-Xdebug -Xrunjdwp:transport=dt_socket,address=127.0.0.1:8888,server=y,suspend=n
+
+And you have the source code in your project (technically this isn't required, but it's kind of useless unless you do), you can connect to the running server by setting up a "debug configuration" with host = the machine the server is running on and port = 8888 (for example - see options above)
+
+You can then set break points and the debug session will halt the server there and you can inspect variables/fields, and even set their values.
+
+
+
+///
+The more modern command-line options for the JVM to do this are
+
+ -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:8888,server=y,suspend=n
