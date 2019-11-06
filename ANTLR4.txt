@@ -1,0 +1,52 @@
+split an ANTLR grammar file into multiple ones
+
+
+
+If you want to split lexer and parser.
+
+Lexer:
+
+lexer grammar HelloLexer;
+Hello : 'hello' ;
+ID : [a-z]+ ;             // match lower-case identifiers
+WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+
+Parser:
+
+parser grammar HelloParser;
+options { tokenVocab=HelloLexer; }
+r  : Hello ID ;      
+
+Remember to name the files HelloLexer.g4 and HelloParser.g4
+
+if you want to import a whole grammar, then you should use the import keyword
+
+grammar Hello;
+
+import OtherGrammar;
+
+Hello : 'hello' ;
+ID : [a-z]+ ;             // match lower-case identifiers
+WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines    
+r  : Hello ID ;
+
+------------------------
+
+
+
+You did not mention ANTLR version, so I am going to assume you are using the current one - 4.x. In ANTLR4 grammars can be imported with import keyword. Something like this:
+
+File: CommonLexerRules.g4
+
+lexer grammar CommonLexerRules;
+
+ID  :   [a-zA-Z]+ ;
+...
+
+File: MyParser.g4
+
+grammar MyParser;      
+import CommonLexerRules; //includes all rules from lexer CommonLexerRules.g4
+...
+
+Rules in the “main grammar” override rules from imported grammars to implement inheritance. See more details here: https://theantlrguy.atlassian.net/wiki/display/ANTLR4/Grammar+Structure#GrammarStructure-GrammarImports
