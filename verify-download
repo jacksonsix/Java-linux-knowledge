@@ -1,0 +1,3 @@
+wget https://downloads.apache.org/openoffice/KEYS
+gpg --import KEYS
+gpg --verify <installation_file>.asc
